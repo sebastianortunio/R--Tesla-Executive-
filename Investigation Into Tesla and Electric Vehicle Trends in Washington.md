@@ -111,16 +111,18 @@ top_tesla_models_priced <- top_tesla_models_priced %>%
   group_by(Model) %>% # Group by model
   slice_min(Base_Price_USD) %>% # Keep lowest price per model
   ungroup() # Remove grouping
+```
 
+```{R}
 ggplot(make_model_sold, aes(x = reorder(Model, count_sold), y = count_sold)) + 
   geom_col(fill = 'dodgerblue') + # Create bar chart
   coord_flip() + # Flip axes for readability
   labs(title = 'Tesla Models Sold - All Time') + # Add chart title
   theme_minimal() # Apply clean theme
-
+```
 <img width="958" height="589" alt="image" src="https://github.com/user-attachments/assets/41992f3f-4cfe-4e27-8219-15f8e6f2db9c" />
 
-
+```{R}
 # Next visualization
 ggplot(top_tesla_models_priced, aes(x = reorder(Model, estimated_revenue), y = estimated_revenue)) + 
   geom_col(fill = 'forestgreen') + # Create revenue bar chart
@@ -128,13 +130,13 @@ ggplot(top_tesla_models_priced, aes(x = reorder(Model, estimated_revenue), y = e
   labs(title = 'Estimated revenue per model', x = '', y = 'Estimated Revenue') + # Add labels
   scale_y_continuous(labels = label_comma()) + # Format y-axis with commas
   theme_minimal() # Apply clean theme
-
+```
 
 
 <img width="963" height="591" alt="image" src="https://github.com/user-attachments/assets/5b7a52ea-0ec1-408c-b639-99935638cc20" />
 
 
-
+```{R}
 # Create yearly Tesla sales summary
 tesla_sold_by_year <- cleaned_df %>% 
   filter(Tesla == 'TESLA') %>% # Keep only Tesla vehicles
@@ -149,7 +151,7 @@ ggplot(tesla_sold_by_year, aes(x = Model_Year, y = count)) +
   labs(title = 'Tesla Vehicles Sold by Year') + # Add chart title
   theme_minimal() # Apply clean theme
 
-
+```
 <img width="962" height="593" alt="image" src="https://github.com/user-attachments/assets/5a6f3e8b-3016-40b2-9f45-612a0ea764d0" />
 
 ```
@@ -187,6 +189,7 @@ Median_Range_for_EVs <- cleaned_df %>%
 
 # Note: MSRP is not fully populated and may skew results
 
+```{R}
 # Visualization: Average Electric Range
 ggplot(Avg_Range_for_EVs, aes(x = Tesla, y = avg_range, fill = Tesla)) +
   geom_col() + # Bar chart
@@ -194,11 +197,11 @@ ggplot(Avg_Range_for_EVs, aes(x = Tesla, y = avg_range, fill = Tesla)) +
        x='Vehicle',
        y='Average Range') + # Title
   theme_minimal() # Clean theme
-
+```
 <img width="964" height="593" alt="image" src="https://github.com/user-attachments/assets/b562d461-4e74-4415-807a-dcbf1b235e82" />
 
 
-
+```{R}
 # Visualization: Average MSRP
 ggplot(Avg_Range_for_EVs, aes(x = Tesla, y = avg_MSRP, fill = Tesla)) +
   geom_col() + # Bar chart
@@ -206,6 +209,7 @@ ggplot(Avg_Range_for_EVs, aes(x = Tesla, y = avg_MSRP, fill = Tesla)) +
        x='Vehicle',
        y='Average MSRP') + # Title
   theme_minimal() # Clean theme
+```
 
 <img width="959" height="593" alt="image" src="https://github.com/user-attachments/assets/213aad74-3359-42d5-9c8a-95b9fc937dfb" />
 
@@ -228,10 +232,9 @@ ggplot(bhev_vs_bev, aes(x = Model_Year, y = count, color = Electric_Vehicle_Type
   geom_point(size = 2) + # Add data points
   labs(title = 'PHEV vs BEV Trends Over Time') + # Chart title
   theme_minimal() # Clean theme
-
+```
 <img width="961" height="589" alt="image" src="https://github.com/user-attachments/assets/d1eb6b5c-72b0-4671-a53a-af30d6532173" />
 
-```
 
 
 The chart shows that both battery electric vehicles (BEVs) and plug-in hybrid electric vehicles (PHEVs) have increased over time, but BEVs have experienced significantly faster growth, especially after 2018. BEV counts rise sharply and peak around 2023, far exceeding PHEVs, which grow more gradually and remain at lower levels throughout the period. This suggests a clear shift in the market toward fully electric vehicles rather than hybrid options. The slight decline observed in the most recent years may reflect incomplete data or reporting lags rather than an actual drop in adoption.
@@ -246,7 +249,9 @@ utility_count_tesla <- cleaned_df %>%
   summarise(count = n(), .groups = "drop") %>% # Count vehicles per utility
   arrange(desc(count)) %>% # Sort from highest to lowest
   head(5) # Keep top 5 utilities
+```
 
+```{R}
 # Visualization
 ggplot(utility_count_tesla, aes(x = reorder(Electric_Utility, count), y = count)) +
   geom_col(fill = 'steelblue') + # Bar chart
@@ -256,7 +261,7 @@ ggplot(utility_count_tesla, aes(x = reorder(Electric_Utility, count), y = count)
        y = 'Tesla Count') +
   theme_minimal() + # Clean theme
   theme(axis.text.y = element_text(size = 4)) # Adjust y-axis text size
-
+```
 <img width="960" height="593" alt="image" src="https://github.com/user-attachments/assets/50773da0-c881-4113-9998-4131af3489ac" />
 
 ```
