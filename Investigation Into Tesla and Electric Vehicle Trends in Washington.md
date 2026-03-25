@@ -154,7 +154,7 @@ ggplot(tesla_sold_by_year, aes(x = Model_Year, y = count)) +
 ```
 <img width="962" height="593" alt="image" src="https://github.com/user-attachments/assets/5a6f3e8b-3016-40b2-9f45-612a0ea764d0" />
 
-```
+
 
 From the results, I found that the Model Y has the highest number of sales in the dataset, followed by the Model 3, while the Model S and Model X are much lower and the Cybertruck and Roadster appear in very small numbers. Using supplemental price data, the estimated revenue chart also shows that the Model Y and Model 3 generate the largest share of revenue because of their much higher sales volume. Finally, the yearly sales trend shows that Tesla sales increased significantly over time, especially after 2017, peaked around 2023, and then declined afterward in the dataset, which may reflect either a recent slowdown or incomplete data for the latest year.
 
